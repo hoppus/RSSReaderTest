@@ -9,22 +9,31 @@
 import UIKit
 import CoreData
 
-class ListTableViewController: UIViewController {
+class ListTableViewController: UITableViewController {
     
-    @IBOutlet weak var tableView: UITableView!
     
     var _fetchedResultsController: NSFetchedResultsController? = nil
+    var pullToRefresh = UIRefreshControl()
+    
+    let unselectedCellRowHeight : CGFloat = ScreenAspect.partOfScreen(GC.partOfImageToScreenStateClose, type: .width) - 20
+    var selectedCellIndexPath: NSIndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CoreDataManager.sharedManager.addItem()
-
         
-        tableView.estimatedRowHeight = 100
+        pullToRefresh.addTarget(self, action: "pullToRefreshAction", forControlEvents: .ValueChanged)
+        tableView.addSubview(pullToRefresh)
+        
+        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
         
+    }
+    
+    func pullToRefreshAction() {
+        CoreDataManager.sharedManager.addItem()
+        pullToRefresh.endRefreshing()
     }
     
     func configureCell(cell: ListCell, atIndexPath indexPath: NSIndexPath) {
@@ -41,16 +50,16 @@ class ListTableViewController: UIViewController {
 }
 
 
-extension ListTableViewController: UITableViewDataSource {
+extension ListTableViewController {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let sectionInfo = self.fetchedResultsController.sections![section]
         let rows = sectionInfo.numberOfObjects
         return rows
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(GC.listCellID, forIndexPath: indexPath) as! ListCell
         
@@ -66,10 +75,47 @@ extension ListTableViewController: UITableViewDataSource {
     
 }
 
-extension UITableViewDelegate {
+extension ListTableViewController {
     
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if let selectedCellIndexPath = selectedCellIndexPath {
+            if selectedCellIndexPath == indexPath {
+                return UITableViewAutomaticDimension
+            }
+        }
+        return unselectedCellRowHeight
+        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let selectedCellIndexPath = selectedCellIndexPath {
+            if selectedCellIndexPath == indexPath {
+                self.selectedCellIndexPath = nil
+            } else {
+                self.selectedCellIndexPath = indexPath
+            }
+        } else {
+            selectedCellIndexPath = indexPath
+        }
+        tableView.beginUpdates()
+        
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ListCell
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            if self.selectedCellIndexPath != nil {
+                cell.cellChangeState(.open)
+            } else {
+                cell.cellChangeState(.close)
+            }
+            cell.updateTextContainerFrame()
+        })
+        
+        
+        tableView.endUpdates()
+    }
 }
-
 
 
 extension ListTableViewController : NSFetchedResultsControllerDelegate {
