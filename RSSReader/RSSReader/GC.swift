@@ -10,6 +10,8 @@ import Foundation
 
 struct GC {
     static let entityName = "Item"
+    static let xmlItemName = "item"
+    
     static let listCellID = "ListCell"
     static let partOfImageToScreenStateClose = 3
     static let partOfImageToScreenStateOpen = 4

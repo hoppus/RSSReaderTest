@@ -17,6 +17,26 @@ class ListCell: UITableViewCell {
     @IBOutlet weak var sourceTitle: UILabel!
     
     @IBOutlet weak var pictureHeightConstraint: NSLayoutConstraint!
+    
+    
+    var model : Item! {
+        
+        didSet {
+            
+            let df = NSDateFormatter()
+            df.timeStyle = .ShortStyle
+            df.dateStyle = .ShortStyle
+            df.locale = NSLocale(localeIdentifier: "ru")
+            df.timeZone = NSTimeZone(abbreviation: "GMT")
+            
+            timeLabel.text = df.stringFromDate(model.createdate)
+            titleText.text = model.title
+            descr.text = model.descr
+            sourceTitle.text = model.sourcetitle
+            
+        }
+    }
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()

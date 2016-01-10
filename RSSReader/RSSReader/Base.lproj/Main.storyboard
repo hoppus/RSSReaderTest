@@ -32,9 +32,16 @@
                                                         <constraint firstAttribute="height" constant="70" id="yG7-Mo-fRT"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="753" text="19:11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MyX-u4-GEK">
-                                                    <rect key="frame" x="8" y="8" width="584" height="13.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="754" text="Спутник убитого пациента рассказал подробности инцидента в белгородской больнице" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qqZ-8A-baL">
+                                                    <rect key="frame" x="88" y="21.5" width="504" height="40.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="753" text="19:11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MyX-u4-GEK">
+                                                    <rect key="frame" x="88" y="8" width="504" height="13.5"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="M5L-WR-4Vt"/>
                                                         <constraint firstAttribute="height" constant="30" id="PVa-85-J5o"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -46,8 +53,14 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Lenta.ru" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-VR-RGx">
+                                                    <rect key="frame" x="548" y="177.5" width="43.5" height="13.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyS-f0-vh2">
-                                                    <rect key="frame" x="8" y="64" width="584" height="111"/>
+                                                    <rect key="frame" x="8" y="66.5" width="584" height="111"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <string key="text">Пациент Евгений Вахтин, которого избил до смерти врач в больнице №2 Белгорода, случайно ударил медсестру, заявил его спутник Александр Авилов. При этом свидетель отверг утверждения врача о том, что тот избил Вахтина за приставания к медсестре. Расследование дела взял под личный контроль прокурор Белгородской области.</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,18 +68,6 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Lenta.ru" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-VR-RGx">
-                                                    <rect key="frame" x="548" y="175" width="43.5" height="13.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="754" text="Спутник убитого пациента рассказал подробности инцидента в белгородской больнице" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qqZ-8A-baL">
-                                                    <rect key="frame" x="88" y="19" width="504" height="40.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -81,10 +82,11 @@
                                                 <constraint firstItem="MyX-u4-GEK" firstAttribute="leading" secondItem="qqZ-8A-baL" secondAttribute="trailing" constant="5" id="Ryi-NT-Ze3"/>
                                                 <constraint firstItem="qyS-f0-vh2" firstAttribute="top" secondItem="qqZ-8A-baL" secondAttribute="bottom" constant="5" id="UfA-vB-2qF"/>
                                                 <constraint firstItem="lEI-JP-Wii" firstAttribute="top" relation="lessThanOrEqual" secondItem="qqZ-8A-baL" secondAttribute="bottom" id="WcP-Zp-bWN"/>
-                                                <constraint firstItem="qqZ-8A-baL" firstAttribute="top" secondItem="MyX-u4-GEK" secondAttribute="bottom" constant="-2" id="bmq-Bs-ruc"/>
+                                                <constraint firstItem="qqZ-8A-baL" firstAttribute="top" secondItem="MyX-u4-GEK" secondAttribute="bottom" id="bmq-Bs-ruc"/>
                                                 <constraint firstItem="qqZ-8A-baL" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="lEI-JP-Wii" secondAttribute="bottom" id="d5o-fD-dLh"/>
                                                 <constraint firstItem="lEI-JP-Wii" firstAttribute="leading" secondItem="zJG-pS-fqS" secondAttribute="leadingMargin" id="f7g-3i-k9M"/>
                                                 <constraint firstItem="qyS-f0-vh2" firstAttribute="leading" secondItem="lEI-JP-Wii" secondAttribute="leading" id="fU2-4O-ZSH"/>
+                                                <constraint firstItem="MyX-u4-GEK" firstAttribute="leading" secondItem="qqZ-8A-baL" secondAttribute="leading" id="hdf-4H-mdn"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Iqi-VR-RGx" secondAttribute="trailing" id="kWG-Xc-gfm"/>
                                                 <constraint firstItem="Iqi-VR-RGx" firstAttribute="top" secondItem="qyS-f0-vh2" secondAttribute="bottom" id="lew-1h-3Ml"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="MyX-u4-GEK" secondAttribute="trailing" id="moZ-11-lMA"/>
@@ -100,6 +102,7 @@
                                                     <exclude reference="OFr-PH-x0X"/>
                                                     <exclude reference="xSl-SY-wa8"/>
                                                     <exclude reference="4nG-7R-DAL"/>
+                                                    <exclude reference="GT7-wZ-csR"/>
                                                     <exclude reference="Ryi-NT-Ze3"/>
                                                     <exclude reference="kWG-Xc-gfm"/>
                                                 </mask>

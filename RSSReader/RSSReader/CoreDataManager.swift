@@ -38,6 +38,20 @@ class CoreDataManager {
         }
     }
     
+    func addItemWith(title : String, description : String, imageUrl : String?, date : NSDate, sourceTitle : String, link : String) {
+        
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName(itemEntity!.name!, inManagedObjectContext: context) as! Item
+        
+        newItem.createdate = date
+        newItem.title = title
+        newItem.descr = description.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        newItem.image = imageUrl
+        newItem.sourcetitle = sourceTitle
+        newItem.link = link
+        
+//        contextSave()
+        
+    }
     
     func addItem() {
         
@@ -48,7 +62,7 @@ class CoreDataManager {
         newItem.descr = "descr"
         newItem.image = ""
         newItem.sourcetitle = ""
-        newItem.sourceurl = ""
+        newItem.link = ""
         
         contextSave()
         

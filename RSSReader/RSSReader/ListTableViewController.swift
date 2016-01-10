@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class ListTableViewController: UITableViewController {
     
     
@@ -28,23 +29,23 @@ class ListTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        
     }
     
+    
+    
     func pullToRefreshAction() {
-        CoreDataManager.sharedManager.addItem()
+        //CoreDataManager.sharedManager.addItem()
+        NetManager.sharedManager.getDataFromNet()
+        
         pullToRefresh.endRefreshing()
     }
     
     func configureCell(cell: ListCell, atIndexPath indexPath: NSIndexPath) {
         
+        let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+
+        cell.model = item
         
-        cell.timeLabel.text = "15:15"
-        //   let word = self.fetchedResultsController.objectAtIndexPath(indexPath) as!
-        
-        //        let word = DataBase.sharedManager.words[indexPath.row]
-        
-        //    cell.engWord.text = word.text
     }
     
 }
@@ -136,7 +137,7 @@ extension ListTableViewController : NSFetchedResultsControllerDelegate {
         fetchRequest.fetchBatchSize = 25
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "createdate", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "createdate", ascending: false)
         //let sortDescriptorMemorability = NSSortDescriptor(key: "memorability", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]

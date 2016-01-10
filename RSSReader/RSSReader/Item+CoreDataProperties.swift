@@ -16,9 +16,9 @@ extension Item {
 
     @NSManaged var title: String
     @NSManaged var descr: String
-    @NSManaged var image: String
+    @NSManaged var image: String?
     @NSManaged var createdate: NSDate
     @NSManaged var sourcetitle: String
-    @NSManaged var sourceurl: String
+    @NSManaged var link: String
 
 }
