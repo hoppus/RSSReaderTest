@@ -59,9 +59,8 @@ class NetManager {
                 var imageUrl : String?
                 do {
                     imageUrl = try element.byKey("enclosure").element?.attributes["url"]
-                } catch {
-                    
-                }
+                } catch { }
+                
                 let source = xmlData["rss"]["channel"]["title"].element?.text
                 
                 let dateString = try element.byKey("pubDate").element?.text
@@ -75,7 +74,6 @@ class NetManager {
                     if let date = dateFormatter.dateFromString(dateString!) {
                         pubDate = date
                     }
-                    
                 }
                 
                 if isItNewItem(with: pubDate, link: link!) {
@@ -85,7 +83,7 @@ class NetManager {
                 } else  { break }
             }
             
-        } catch { }
+        } catch {  }
         
     }
     

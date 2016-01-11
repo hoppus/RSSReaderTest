@@ -28,6 +28,7 @@ class ListCell: UITableViewCell {
             let colorBlack = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
             let colorGray = UIColor(red: 130/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
             
+            // set date
             let df = NSDateFormatter()
             df.timeStyle = .ShortStyle
             df.dateStyle = .ShortStyle
@@ -37,10 +38,11 @@ class ListCell: UITableViewCell {
             timeLabel.text = df.stringFromDate(model.createdate)
             timeLabel.textColor = colorGray
             
+            // set time
             sourceTitle.text = model.sourcetitle
             sourceTitle.textColor = colorGray
             
-            // description
+            // set description
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .Left
@@ -57,7 +59,7 @@ class ListCell: UITableViewCell {
             
             descr.attributedText = attrStringTitle
 
-            //image
+            // set image
 
             if let imageString = model.image {
                 
@@ -82,7 +84,6 @@ class ListCell: UITableViewCell {
         picture.image = placeholderImage
         cellChangeState(.close)
         updateTextContainerFrame()
-        
     }
     
     func updateTextContainerFrame() {

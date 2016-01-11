@@ -40,9 +40,7 @@ class ListTableViewController: UITableViewController {
             CoreDataManager.sharedManager.contextSave()
             self.pullToRefresh.endRefreshing()
         }
-        
     }
-  
     
 }
 
