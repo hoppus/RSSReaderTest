@@ -12,7 +12,6 @@ import AlamofireImage
 
 class ListTableViewController: UITableViewController {
     
-    
     var _fetchedResultsController: NSFetchedResultsController? = nil
     var pullToRefresh = UIRefreshControl()
     
@@ -22,7 +21,6 @@ class ListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         pullToRefresh.addTarget(self, action: "pullToRefreshAction", forControlEvents: .ValueChanged)
         tableView.addSubview(pullToRefresh)
         
@@ -31,27 +29,24 @@ class ListTableViewController: UITableViewController {
         
     }
     
-    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        pullToRefreshAction()
+    }
     
     func pullToRefreshAction() {
-        //CoreDataManager.sharedManager.addItem()
-        NetManager.sharedManager.getDataFromNet()
         
-        pullToRefresh.endRefreshing()
-    }
-    
-    func configureCell(cell: ListCell, atIndexPath indexPath: NSIndexPath) {
-        
-        let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
-        
-        cell.model = item
-        
+        NetManager.sharedManager.getDataFromNet { () -> () in
+            CoreDataManager.sharedManager.contextSave()
+            self.pullToRefresh.endRefreshing()
+        }
         
     }
+  
     
 }
 
-
+//MARK: UITableViewDataSource
 extension ListTableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,16 +62,17 @@ extension ListTableViewController {
         
         self.configureCell(cell, atIndexPath: indexPath)
         
-        
-        
         return cell
     }
     
-    
-    
-    
+    func configureCell(cell: ListCell, atIndexPath indexPath: NSIndexPath) {
+        
+        let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+        cell.model = item
+    }
 }
 
+//MARK:  UITableViewDelegate
 extension ListTableViewController {
     
     
@@ -110,7 +106,6 @@ extension ListTableViewController {
         }
         
         
-        
         tableView.beginUpdates()
         
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ListCell
@@ -133,9 +128,8 @@ extension ListTableViewController {
     }
 }
 
-
+//MARK:  NSFetchedResultsControllerDelegate
 extension ListTableViewController : NSFetchedResultsControllerDelegate {
-    
     
     var fetchedResultsController: NSFetchedResultsController {
         
@@ -144,21 +138,15 @@ extension ListTableViewController : NSFetchedResultsControllerDelegate {
         }
         
         let fetchRequest = NSFetchRequest()
-        // Edit the entity name as appropriate.
         let entity = NSEntityDescription.entityForName(GC.entityName, inManagedObjectContext: CoreDataManager.sharedManager.context)
         fetchRequest.entity = entity
         
-        // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 25
         
-        // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "createdate", ascending: false)
-        //let sortDescriptorMemorability = NSSortDescriptor(key: "memorability", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.sharedManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
         aFetchedResultsController.delegate = self
@@ -166,12 +154,7 @@ extension ListTableViewController : NSFetchedResultsControllerDelegate {
         
         do {
             try _fetchedResultsController!.performFetch()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //print("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
+        } catch { }
         
         return _fetchedResultsController!
     }
@@ -199,7 +182,6 @@ extension ListTableViewController : NSFetchedResultsControllerDelegate {
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
-            
             self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!) as! ListCell, atIndexPath: indexPath!)
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)

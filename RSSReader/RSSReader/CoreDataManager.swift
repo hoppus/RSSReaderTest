@@ -28,17 +28,14 @@ class CoreDataManager {
         }
     }
     
-    
     func contextSave() {
         
         do {
             try context.save()
-        } catch {
-            //            abort()
-        }
+        } catch { }
     }
     
-    func addItemWith(title : String, description : String, imageUrl : String?, date : NSDate, sourceTitle : String, link : String, type : String) {
+    func addItemWith(title : String, description : String, imageUrl : String?, date : NSDate, sourceTitle : String, link : String) {
         
         let newItem = NSEntityDescription.insertNewObjectForEntityForName(itemEntity!.name!, inManagedObjectContext: context) as! Item
         
@@ -48,7 +45,6 @@ class CoreDataManager {
         newItem.image = imageUrl
         newItem.sourcetitle = sourceTitle
         newItem.link = link
-        newItem.rsstype = type
         
     }
     

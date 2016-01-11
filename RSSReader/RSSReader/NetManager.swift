@@ -21,12 +21,11 @@ class NetManager {
         case gazeta = "http://www.gazeta.ru/export/rss/lenta.xml"
     }
     
-    
-    
-    func getDataFromNet() {
+    func getDataFromNet(completionBlock : () -> ()) {
         
-        for currentRSS in [rssType.lenta.rawValue, rssType.gazeta.rawValue] {
-            print("getDataFromNet with \(currentRSS)")
+        let arrayOfRss = [rssType.lenta.rawValue, rssType.gazeta.rawValue]
+        
+        for currentRSS in arrayOfRss {
             
             Alamofire.request(.GET, currentRSS)
                 .response { (request, response, data, error) in
@@ -34,23 +33,20 @@ class NetManager {
                     if error == nil {
                         let xml = SWXMLHash.parse(data!)
                         
-                        self.parseXmlToCoreData(xml, type: currentRSS)
+                        self.parseXmlToCoreData(xml)
                         
-                        //print(xml)
                     } else {
                         print(error.debugDescription)
                     }
                     
-                    CoreDataManager.sharedManager.contextSave()
+                    if currentRSS == arrayOfRss.last {
+                        completionBlock()
+                    }
             }
-            
-            
         }
-        
-        
     }
     
-    func parseXmlToCoreData(xmlData:XMLIndexer, type : String) {
+    func parseXmlToCoreData(xmlData:XMLIndexer) {
         
         do {
             let itemsList = try xmlData["rss"]["channel"].byKey(GC.xmlItemName)
@@ -81,58 +77,38 @@ class NetManager {
                     }
                     
                 }
-                if isItNewItem(with: pubDate, type: type) {
+                
+                if isItNewItem(with: pubDate, link: link!) {
                     
-                    CoreDataManager.sharedManager.addItemWith(title!, description: description!, imageUrl: imageUrl, date: pubDate, sourceTitle: source!, link: link!, type: type)
+                    CoreDataManager.sharedManager.addItemWith(title!, description: description!, imageUrl: imageUrl, date: pubDate, sourceTitle: source!, link: link!)
                     
                 } else  { break }
             }
             
-            
         } catch { }
         
     }
     
     
-    func isItNewItem(with date : NSDate, type : String) -> Bool {
+    func isItNewItem(with date : NSDate, link : String) -> Bool {
         
         let fetchRequest = NSFetchRequest()
         let entity = NSEntityDescription.entityForName(GC.entityName, inManagedObjectContext: CoreDataManager.sharedManager.context)
         fetchRequest.entity = entity
-        fetchRequest.fetchBatchSize = 1
         
-        let sortDescriptor = NSSortDescriptor(key: "createdate", ascending: false)
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        
-        let predicate = NSPredicate(format: "rsstype = %@", type)
+        let predicate = NSPredicate(format: "link = %@", link)
         fetchRequest.predicate = predicate
         
         do {
             let results = try CoreDataManager.sharedManager.context.executeFetchRequest(fetchRequest)
+            
             if results.count > 0 {
-                print(results)
-                if let item = results.first as? Item {
-                    if item.createdate >= date {
-                        print("item.createdate = \(item.createdate)  \n date \(date)")
-                        return false
-                    }
-                    /*let res = item.createdate.compare(date)
-                    if res != .OrderedDescending {
-                    return false
-                    }
-                    */
-                }
+                return false
             }
             
         } catch { }
         
-        
-        
         return true
-        
     }
-    
     
 }

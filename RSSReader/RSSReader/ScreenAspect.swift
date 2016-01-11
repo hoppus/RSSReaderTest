@@ -22,7 +22,6 @@ class ScreenAspect {
         let screenWidth = (Int)(screenSize.width)
         let screenHeight = (Int)(screenSize.height)
         
-        
         var result : Int!
         switch type {
         case .height :
@@ -30,10 +29,7 @@ class ScreenAspect {
         case .width :
             result = screenWidth / part
         }
-        
-        
+
         return CGFloat(result)
-        
     }
-    
 }

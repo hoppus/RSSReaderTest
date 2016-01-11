@@ -13,21 +13,20 @@ class ListCell: UITableViewCell {
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var picture: UIImageView!
-    @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var descr: UITextView!
     @IBOutlet weak var sourceTitle: UILabel!
-    
     @IBOutlet weak var pictureView: UIView!
-    
     
     @IBOutlet weak var pictureHeightConstrain: NSLayoutConstraint!
     
     let placeholderImage = UIImage(named: "RSS")
+    
     var model : Item! {
         
         didSet {
-            let color = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
-            let color2 = UIColor(red: 130/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
+            
+            let colorBlack = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
+            let colorGray = UIColor(red: 130/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
             
             let df = NSDateFormatter()
             df.timeStyle = .ShortStyle
@@ -36,40 +35,31 @@ class ListCell: UITableViewCell {
             df.timeZone = NSTimeZone.localTimeZone()
             
             timeLabel.text = df.stringFromDate(model.createdate)
-            timeLabel.textColor = color2
-            titleText.text = ""
+            timeLabel.textColor = colorGray
             
             sourceTitle.text = model.sourcetitle
-            sourceTitle.textColor = color2
+            sourceTitle.textColor = colorGray
+            
             // description
             
             let paragraphStyle = NSMutableParagraphStyle()
-            //            paragraphStyle.lineHeightMultiple = 1.5
             paragraphStyle.alignment = .Left
             
-            
-            
-            let attributeTitle = [NSForegroundColorAttributeName : color, NSFontAttributeName : UIFont.boldSystemFontOfSize(13), NSParagraphStyleAttributeName : paragraphStyle]
+            let attributeTitle = [NSForegroundColorAttributeName : colorBlack, NSFontAttributeName : UIFont.boldSystemFontOfSize(13), NSParagraphStyleAttributeName : paragraphStyle]
             
             let attrStringTitle =  NSMutableAttributedString(string: model.title + "\n", attributes: attributeTitle)
             
-            let attributeDescription = [NSForegroundColorAttributeName : color, NSFontAttributeName : UIFont.systemFontOfSize(10), NSParagraphStyleAttributeName : paragraphStyle]
+            let attributeDescription = [NSForegroundColorAttributeName : colorGray, NSFontAttributeName : UIFont.systemFontOfSize(10), NSParagraphStyleAttributeName : paragraphStyle]
             
             let attrStringDescription = NSAttributedString(string: model.descr, attributes: attributeDescription)
             
             attrStringTitle.appendAttributedString(attrStringDescription)
             
-            
             descr.attributedText = attrStringTitle
+
             //image
-            
-            
-            
-            
+
             if let imageString = model.image {
-                let filter = AspectScaledToFitSizeFilter(size: picture.frame.size)
-                
-                
                 
                 picture.af_setImageWithURL(
                     NSURL(string: imageString)!,
@@ -77,26 +67,15 @@ class ListCell: UITableViewCell {
                     filter: nil,
                     imageTransition: .CrossDissolve(0.1)
                 )
-            } else {
-                // picture.image = placeholderImage
             }
-            
             
         }
     }
     
     override func awakeFromNib() {
-        
         super.awakeFromNib()
-        //        descr.textContainerInset = UIEdgeInsetsZero
-        prepareForReuse()
-        // Initialization code
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        prepareForReuse()
     }
     
     override func prepareForReuse() {
@@ -110,17 +89,10 @@ class ListCell: UITableViewCell {
         
         var rect = descr.convertRect(picture.bounds, fromView: pictureView)
         rect.size.width += 3
-        //        rect.size.height -= 47
         let bezier = UIBezierPath(rect: rect)
-        
-        print("rect \(rect)")
-        print("picture \(pictureView.frame)")
         descr.textContainer.exclusionPaths = [bezier]
         
         self.layoutIfNeeded()
-        
-        
-        
     }
     
     enum state {
@@ -139,8 +111,6 @@ class ListCell: UITableViewCell {
         }
         
         pictureHeightConstrain.constant = ScreenAspect.partOfScreen(delta, type: .width)
-        
-        
         
         self.updateConstraints()
         self.layoutIfNeeded()
