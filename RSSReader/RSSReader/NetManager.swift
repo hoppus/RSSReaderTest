@@ -45,6 +45,11 @@ class NetManager {
             }
         }
     }
+}
+
+
+
+extension NetManager {
     
     func parseXmlToCoreData(xmlData:XMLIndexer) {
         
@@ -108,5 +113,6 @@ class NetManager {
         
         return true
     }
+    
     
 }
