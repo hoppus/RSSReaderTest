@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bZg-N7-h24">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--RSS Reader-->
+        <scene sceneID="25U-T6-ufl">
+            <objects>
+                <tableViewController id="y70-9D-iTo" customClass="ListTableViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" id="nff-oL-Ke4">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListCell" rowHeight="116" id="1Ec-46-iHS" customClass="ListCell" customModule="RSSReader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="116"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Ec-46-iHS" id="yl7-r2-u82">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJG-pS-fqS">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="753" text="19:11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MyX-u4-GEK">
+                                                    <rect key="frame" x="86" y="13" width="506" height="13.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="M5L-WR-4Vt"/>
+                                                        <constraint firstAttribute="height" constant="30" id="PVa-85-J5o"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="PVa-85-J5o"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Lenta.ru" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-VR-RGx">
+                                                    <rect key="frame" x="548" y="89" width="43.5" height="13.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyS-f0-vh2">
+                                                    <rect key="frame" x="8" y="18.5" width="584" height="68.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Пациент Евгений Вахтин, которого избил до смерти врач в больнице №2 Белгорода, случайно ударил медсестру, заявил его спутник Александр Авилов. При этом свидетель отверг утверждения врача о том, что тот избил Вахтина за приставания к медсестре. Расследование дела взял под личный контроль прокурор Белгородской области.</string>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                </textView>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tyo-aU-9rE" userLabel="pictureView">
+                                                    <rect key="frame" x="8" y="5" width="70" height="70"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RSS" translatesAutoresizingMaskIntoConstraints="NO" id="lEI-JP-Wii">
+                                                            <rect key="frame" x="0.0" y="8" width="70" height="54"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="lEI-JP-Wii" secondAttribute="height" multiplier="1:1" id="anK-eC-9QO"/>
+                                                                <constraint firstAttribute="height" constant="70" id="yG7-Mo-fRT"/>
+                                                            </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="anK-eC-9QO"/>
+                                                                    <exclude reference="yG7-Mo-fRT"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Tyo-aU-9rE" secondAttribute="height" multiplier="1:1" id="769-1D-ylL"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lEI-JP-Wii" secondAttribute="trailing" id="KjB-N9-a7y"/>
+                                                        <constraint firstAttribute="height" constant="70" id="LKU-Qr-fYM"/>
+                                                        <constraint firstItem="lEI-JP-Wii" firstAttribute="leading" secondItem="Tyo-aU-9rE" secondAttribute="leading" id="MCU-sL-4Td"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="lEI-JP-Wii" secondAttribute="bottom" id="SlQ-3M-A2T"/>
+                                                        <constraint firstItem="lEI-JP-Wii" firstAttribute="top" secondItem="Tyo-aU-9rE" secondAttribute="topMargin" id="yYg-ZZ-Gl0"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="MyX-u4-GEK" firstAttribute="leading" secondItem="Tyo-aU-9rE" secondAttribute="trailing" constant="8" id="2W5-y7-bjW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qyS-f0-vh2" secondAttribute="trailing" id="83X-Wa-4ud"/>
+                                                <constraint firstItem="Tyo-aU-9rE" firstAttribute="leading" secondItem="zJG-pS-fqS" secondAttribute="leadingMargin" id="N6y-FS-T1t"/>
+                                                <constraint firstItem="qyS-f0-vh2" firstAttribute="leading" secondItem="Tyo-aU-9rE" secondAttribute="leading" id="Nm2-9L-dCP"/>
+                                                <constraint firstItem="MyX-u4-GEK" firstAttribute="top" secondItem="Tyo-aU-9rE" secondAttribute="top" id="R2K-nR-Lgb"/>
+                                                <constraint firstItem="qyS-f0-vh2" firstAttribute="top" secondItem="MyX-u4-GEK" secondAttribute="bottom" constant="-8" id="Xy0-pT-3Hz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Iqi-VR-RGx" secondAttribute="trailing" id="kWG-Xc-gfm"/>
+                                                <constraint firstItem="Iqi-VR-RGx" firstAttribute="top" secondItem="qyS-f0-vh2" secondAttribute="bottom" priority="750" constant="2" id="lew-1h-3Ml"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MyX-u4-GEK" secondAttribute="trailing" id="moZ-11-lMA"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Iqi-VR-RGx" secondAttribute="bottom" constant="10" id="oR1-BA-Hy2"/>
+                                                <constraint firstItem="Iqi-VR-RGx" firstAttribute="trailing" secondItem="MyX-u4-GEK" secondAttribute="trailing" id="pOv-3i-TSG"/>
+                                                <constraint firstItem="qyS-f0-vh2" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Tyo-aU-9rE" secondAttribute="bottom" id="qOe-CL-FsJ"/>
+                                                <constraint firstItem="MyX-u4-GEK" firstAttribute="top" secondItem="lEI-JP-Wii" secondAttribute="top" id="wTK-lT-wr2"/>
+                                                <constraint firstItem="Tyo-aU-9rE" firstAttribute="top" secondItem="zJG-pS-fqS" secondAttribute="top" constant="5" id="y43-6q-BTB"/>
+                                                <constraint firstItem="qyS-f0-vh2" firstAttribute="bottom" secondItem="Tyo-aU-9rE" secondAttribute="bottom" id="z01-AS-ISK"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="z01-AS-ISK"/>
+                                                    <exclude reference="R2K-nR-Lgb"/>
+                                                    <exclude reference="kWG-Xc-gfm"/>
+                                                </mask>
+                                            </variation>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="zJG-pS-fqS" firstAttribute="leading" secondItem="yl7-r2-u82" secondAttribute="leading" id="PCD-WD-Wbn"/>
+                                        <constraint firstAttribute="bottom" secondItem="zJG-pS-fqS" secondAttribute="bottom" id="bc4-q7-E2a"/>
+                                        <constraint firstItem="zJG-pS-fqS" firstAttribute="top" secondItem="yl7-r2-u82" secondAttribute="top" id="fh7-Sx-j3z"/>
+                                        <constraint firstAttribute="trailing" secondItem="zJG-pS-fqS" secondAttribute="trailing" id="sDQ-kW-kuc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="descr" destination="qyS-f0-vh2" id="Uap-YP-NN2"/>
+                                    <outlet property="picture" destination="lEI-JP-Wii" id="JIl-96-anx"/>
+                                    <outlet property="pictureHeightConstrain" destination="LKU-Qr-fYM" id="fSo-YV-6f3"/>
+                                    <outlet property="pictureView" destination="Tyo-aU-9rE" id="qJT-gy-wAr"/>
+                                    <outlet property="sourceTitle" destination="Iqi-VR-RGx" id="e73-1P-GRh"/>
+                                    <outlet property="timeLabel" destination="MyX-u4-GEK" id="MYn-d3-90h"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="y70-9D-iTo" id="CdN-L4-KSR"/>
+                            <outlet property="delegate" destination="y70-9D-iTo" id="Agb-hF-SsA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="RSS Reader" id="ncs-tm-6oI"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AOm-WM-Gza" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080" y="358"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gXT-sY-RXQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bZg-N7-h24" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QIj-fO-4Tk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="y70-9D-iTo" kind="relationship" relationship="rootViewController" id="zBt-xR-sQ4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MAm-xJ-TLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="269" y="338"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="RSS" width="614" height="460"/>
+    </resources>
+</document>
