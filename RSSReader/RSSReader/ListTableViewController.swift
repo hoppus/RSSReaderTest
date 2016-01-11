@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import AlamofireImage
 
 class ListTableViewController: UITableViewController {
     
@@ -16,7 +16,7 @@ class ListTableViewController: UITableViewController {
     var _fetchedResultsController: NSFetchedResultsController? = nil
     var pullToRefresh = UIRefreshControl()
     
-    let unselectedCellRowHeight : CGFloat = ScreenAspect.partOfScreen(GC.partOfImageToScreenStateClose, type: .width) - 20
+    let unselectedCellRowHeight : CGFloat = ScreenAspect.partOfScreen(GC.partOfImageToScreenStateClose, type: .width)
     var selectedCellIndexPath: NSIndexPath?
     
     override func viewDidLoad() {
@@ -43,8 +43,9 @@ class ListTableViewController: UITableViewController {
     func configureCell(cell: ListCell, atIndexPath indexPath: NSIndexPath) {
         
         let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
-
+        
         cell.model = item
+        
         
     }
     
@@ -91,19 +92,35 @@ extension ListTableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if let selectedCellIndexPath = selectedCellIndexPath {
             if selectedCellIndexPath == indexPath {
                 self.selectedCellIndexPath = nil
             } else {
+                // закрываем предыдущую ячейку
+                if let cellToAnimate = tableView.cellForRowAtIndexPath(self.selectedCellIndexPath!) as? ListCell {
+                    self.selectedCellIndexPath = nil
+                    animateCell(cellToAnimate)
+                }
                 self.selectedCellIndexPath = indexPath
             }
+            
         } else {
             selectedCellIndexPath = indexPath
         }
+        
+        
+        
         tableView.beginUpdates()
         
-        
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ListCell
+        animateCell(cell)
+        
+        tableView.endUpdates()
+    }
+    
+    func animateCell(cell : ListCell){
+        
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             if self.selectedCellIndexPath != nil {
                 cell.cellChangeState(.open)
@@ -113,8 +130,6 @@ extension ListTableViewController {
             cell.updateTextContainerFrame()
         })
         
-        
-        tableView.endUpdates()
     }
 }
 

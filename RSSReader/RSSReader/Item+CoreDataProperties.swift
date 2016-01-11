@@ -20,5 +20,6 @@ extension Item {
     @NSManaged var createdate: NSDate
     @NSManaged var sourcetitle: String
     @NSManaged var link: String
+    @NSManaged var rsstype: String
 
 }

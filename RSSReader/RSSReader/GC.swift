@@ -13,6 +13,6 @@ struct GC {
     static let xmlItemName = "item"
     
     static let listCellID = "ListCell"
-    static let partOfImageToScreenStateClose = 3
-    static let partOfImageToScreenStateOpen = 4
+    static let partOfImageToScreenStateClose = 5
+    static let partOfImageToScreenStateOpen = 3
 }
