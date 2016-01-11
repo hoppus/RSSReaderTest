@@ -81,11 +81,11 @@ extension NetManager {
                     }
                 }
                 
-                if isItNewItem(with: pubDate, link: link!) {
+                if isItNewItem(link!) {
                     
                     CoreDataManager.sharedManager.addItemWith(title!, description: description!, imageUrl: imageUrl, date: pubDate, sourceTitle: source!, link: link!)
                     
-                } else  { break }
+                } else  { continue }
             }
             
         } catch {  }
@@ -93,7 +93,7 @@ extension NetManager {
     }
     
     
-    func isItNewItem(with date : NSDate, link : String) -> Bool {
+    func isItNewItem(link : String) -> Bool {
         
         let fetchRequest = NSFetchRequest()
         let entity = NSEntityDescription.entityForName(GC.entityName, inManagedObjectContext: CoreDataManager.sharedManager.context)
